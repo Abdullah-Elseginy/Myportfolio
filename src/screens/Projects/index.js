@@ -8,7 +8,7 @@ const Projects = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
+        <div className="min-h-screen p-6">
             <h1 className="text-3xl font-bold text-gray-800 mb-6">Projects</h1>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project) => (

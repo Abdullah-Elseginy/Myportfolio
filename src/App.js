@@ -7,9 +7,10 @@ import { About, Contact, Home, Projects } from "./screens";
 const App = () => {
     return (
         <Router>
-            <Header />
+            {/* <Header /> */}
             <NavBar />
-            <main>
+            <main className="bg-gradient-to-r from-blue via-mint-blue to-mint-green text-white min-h-screen"
+            >
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
