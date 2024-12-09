@@ -115,15 +115,15 @@
     }
   }
   .heartbeat {
-    animation: heartbeat 15s ease-in-out infinite;
+    animation: heartbeat 30s ease-in-out infinite;
   }
   .heartbeat1 {
-    animation: heartbeat1 25s ease-in-out infinite;
+    animation: heartbeat1 30s ease-in-out infinite;
   }
   .heartbeat2 {
-    animation: heartbeat2 15s ease-in-out infinite;
+    animation: heartbeat2 30s ease-in-out infinite;
   }
   .heartbeat4{
-    animation: heartbeat4 60s ease-in-out infinite;
+    animation: heartbeat4 50s ease-in-out infinite;
 
   }

@@ -1,5 +1,5 @@
-import React from "react";
-import { MyImage } from "../../assets";
+import React, { useState } from "react";
+import { MyCV, MyImage } from "../../assets";
 import Slider from "react-slick";
 import {
   FaReact,
@@ -8,9 +8,22 @@ import {
   FaAws,
   FaGit,
   FaLinux,
+  FaFacebook,
+  FaLinkedin,
+  FaGithub,
+  FaInstagram,
+  FaWhatsapp,
+  FaDownload,
 } from "react-icons/fa"; // Icons for skills
+import { SiGmail } from "react-icons/si";
+
 import styles from "./Home.module.css";
+import { CustomBottom, CustomModal } from "../../components";
+import { Link, useNavigate } from "react-router-dom";
 export default function Home() {
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const [Data, Setdata] = useState({});
   const skills = [
     {
       category: "Programming Languages",
@@ -43,7 +56,62 @@ export default function Home() {
       icon: <FaLinux className="text-4xl  text-light-pink" />,
     },
   ];
-
+  const links = [
+    {
+      title: "Facebook",
+      href: "https://www.facebook.com/3bdulla7elseginy",
+      icon: <FaFacebook className="mr-2 w-36 h-36 text-light-pink " />,
+    },
+    {
+      title: "LinkedIn",
+      href: "https://www.linkedin.com/in/abdullah-elseginy-7bbbb21ba/",
+      icon: <FaLinkedin className="mr-2 w-36 h-36 text-light-pink" />,
+    },
+    {
+      title: "GitHub",
+      href: "https://github.com/Abdullah-Elseginy",
+      icon: <FaGithub className="mr-2 w-36 h-36 text-light-pink " />,
+    },
+    {
+      title: "Instagram",
+      href:
+        "https://www.instagram.com/3bdulla7.elseginy/profilecard/?igsh=NnYwd3dpdjZrOWN3",
+      icon: <FaInstagram className="mr-2 w-36 h-36 text-light-pink" />,
+    },
+    {
+      title: "WhatsApp",
+      href: "https://wa.link/upgmhp",
+      icon: <FaWhatsapp className="mr-2 w-36 h-36 text-light-pink" />,
+    },
+    {
+      title: "Send Email",
+      href: "./contact",
+      icon: <SiGmail className="mr-2 w-36 h-36 text-light-pink" />,
+    },
+  ];
+  const Projects = [
+    {
+      title: "My Car APP",
+      description:
+        "This is my portfolio website created using ReactJS and NextJS",
+      link: "https://github.com/Abdullah-Elseginy/portfolio",
+      image: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+    {
+      title: "My Projects",
+      description:
+        "This is my portfolio website created using ReactJS and NextJS",
+      link: "https://github.com/Abdullah-Elseginy/portfolio",
+      image: "https://i.ibb.co/2y6s37G/portfolio.png",
+    },
+    {
+      title: "My AMS APP",
+      description:
+        "This is my portfolio website created using ReactJS and NextJS",
+      link: "https://github.com/Abdullah-Elseginy/portfolio",
+      image: "https://i.ibb.co/2y6s37G/portfolio.png",
+    },
+  ];
   // Slick settings
   const settings = {
     dots: false,
@@ -109,6 +177,15 @@ export default function Home() {
               Native, and Material UI, with experience in Redux, Tailwind CSS,
               and modern JavaScript frameworks.
             </p>
+            <div className="mt-5">
+              <a href={MyCV} download>
+                <CustomBottom
+                  text="Download CV"
+                  title="Download CV"
+                  rigthIcon={<FaDownload className="ml-3" />}
+                />
+              </a>
+            </div>
           </section>
         </div>
       </header>
@@ -151,84 +228,81 @@ export default function Home() {
       </section>
       {/* Projects Section */}
       <section className="px-6 py-12 text-center bg-light-pink">
-        <h2 className="text-3xl font-semibold mb-6 text-blue">My Projects</h2>
+        <h2 className="text-4xl font-bold text-center mb-10 text-mint-blue">
+          My Projects
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Project 1 */}
-          <div
-            className="relative bg-cover bg-center p-6 rounded-lg shadow-lg"
-            style={{
-              backgroundImage: `url('https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              height: "300px", // Adjust the height as needed
-            }}
-          >
-            <a
-              href="#s"
-              className="absolute top-5 right-0 bg-mint-green text-light-pink hover:bg-mint-blue py-2 px-4 rounded-lg mb-4 mr-4 font-bold"
+          {Projects.map((item) => (
+            <div
+              className="relative bg-cover bg-center p-6 rounded-lg shadow-lg"
+              style={{
+                backgroundImage: `url(${item.image})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "300px", // Adjust the height as needed
+              }}
             >
-              View Project
-            </a>
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg">
-              <h3 className="text-xl font-semibold text-white mb-2">
-                Project One
-              </h3>
-              <p className="text-lg text-gray-200">
-                A React web application that integrates with third-party APIs to
-                display dynamic data in a clean UI.
-              </p>
+              <a href="#s" className="absolute top-5 right-0">
+                <CustomBottom
+                  text="Open Project"
+                  styles={"mr-5"}
+                  onClick={() => {
+                    setShowModal(true);
+                    Setdata(item);
+                  }}
+                />
+              </a>
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-lg text-gray-200">
+                  A React web application that integrates with third-party APIs
+                  to display dynamic data in a clean UI.
+                </p>
+              </div>
             </div>
-          </div>
-
-          {/* Project 2 */}
-          <div className="relative bg-white p-6 rounded-lg shadow-lg h-full flex flex-col justify-between">
-            <h3 className="text-xl font-semibold mb-4 text-blue">
-              Project Two
-            </h3>
-            <p className="text-lg text-gray-700 mb-4">
-              A mobile app built with React Native, designed for both iOS and
-              Android platforms.
-            </p>
-            <a
-              href="#s"
-              className="text-mint-green hover:text-mint-blue text-lg font-semibold mt-auto"
-            >
-              View Project
-            </a>
-          </div>
-
-          {/* Project 3 */}
-          <div className="relative bg-white p-6 rounded-lg shadow-lg h-full flex flex-col justify-between">
-            <h3 className="text-xl font-semibold mb-4 text-blue">
-              Project Three
-            </h3>
-            <p className="text-lg text-gray-700 mb-4">
-              A dashboard with real-time data using Redux and WebSocket
-              integration for a smooth user experience.
-            </p>
-            <a
-              href="#s"
-              className="text-mint-green hover:text-mint-blue text-lg font-semibold mt-auto"
-            >
-              View Project
-            </a>
-          </div>
+          ))}
+        </div>
+        <div className="mt-3">
+          <CustomBottom
+            text="See All Projects"
+            onClick={() => navigate("./projects")}
+          />
         </div>
       </section>
 
       {/* Contact Section */}
       <section className="px-6 py-12 text-center bg-mint-green">
-        <h2 className="text-3xl font-semibold mb-6 text-white">Contact Me</h2>
-        <p className="text-lg text-white mb-4">
+        <h2 className="text-4xl font-bold text-center mb-10 text-light-pink">
+          Contact Me
+        </h2>
+        <p className="text-lg  text-light-pink mb-4">
           If you are interested in working with me or just want to chat, feel
           free to reach out!
         </p>
-        <a
-          href="mailto:someone@example.com"
-          className="text-xl text-light-pink hover:text-mint-blue font-semibold"
-        >
-          Send me an email
-        </a>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 ">
+          {links.map((link) => (
+            <div className="flex flex-row items-center justify-center self-center bg-mint-blue border-light-pink border-2 p-2 rounded-lg my-3 hover:scale-95 transition-transform duration-500 shadow-lg">
+              <Link
+                to={link.href}
+                target={link.title !== "Send Email" ? "_blank" : "_self"}
+                rel="noreferrer"
+                className="flex items-center flex-col font-bold text-light-pink"
+              >
+                {link.icon}
+                {link.title}
+              </Link>
+            </div>
+          ))}
+        </div>
+        {/* Modal */}
+        <CustomModal
+          project={Data}
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+        />
       </section>
     </div>
   );
