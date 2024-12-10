@@ -1,55 +1,9 @@
 import React, { useRef, useState } from "react";
-import { AMSAPP, BloomifyMocup, ShoglMocup } from "../../assets";
 import { motion, useInView } from "framer-motion";
 import { CustomBottom, CustomModal } from "../../components";
+import { ProjectsData } from "../../assets/utils/Data";
 
 const Projects = () => {
-  const Projects = [
-    {
-      title: "Academy Management System App",
-      description:
-        "A React Native mobile application that integrates with third-party APIs to display dynamic data in a clean UI.",
-      githubLink:
-        "https://github.com/Abdullah-Elseginy/Academy-management-System-App",
-      image: AMSAPP,
-    },
-    {
-      title: "Shoghl App",
-      description:
-        "This mobile application, built with React Native, facilitates the hiring process by allowing job seekers to apply and company owners to post job listings and hire candidates",
-      githubLink: "https://github.com/Abdullah-Elseginy/Shoghl-Application",
-      image: ShoglMocup,
-    },
-    {
-      title: "Bloomify App",
-      description:
-        "Bloomify is an e-commerce application designed for selling flowers online. It allows users to browse and purchase a wide variety of floral arrangements.",
-      githubLink: "https://github.com/Abdullah-Elseginy/BLOOMIFY-APP-ITI",
-      image: BloomifyMocup,
-    },
-    {
-      title: "Academy Management System App",
-      description:
-        "A React Native mobile application that integrates with third-party APIs to display dynamic data in a clean UI.",
-      githubLink:
-        "https://github.com/Abdullah-Elseginy/Academy-management-System-App",
-      image: AMSAPP,
-    },
-    {
-      title: "Shoghl App",
-      description:
-        "This mobile application, built with React Native, facilitates the hiring process by allowing job seekers to apply and company owners to post job listings and hire candidates",
-      githubLink: "https://github.com/Abdullah-Elseginy/Shoghl-Application",
-      image: ShoglMocup,
-    },
-    {
-      title: "Bloomify App",
-      description:
-        "Bloomify is an e-commerce application designed for selling flowers online. It allows users to browse and purchase a wide variety of floral arrangements.",
-      githubLink: "https://github.com/Abdullah-Elseginy/BLOOMIFY-APP-ITI",
-      image: BloomifyMocup,
-    },
-  ];
   const [showModal, setShowModal] = useState(false);
   const [Data, Setdata] = useState({});
   const ref = useRef(null);
@@ -70,7 +24,7 @@ const Projects = () => {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           ref={ref}
         >
-          {Projects.map((item, index) => (
+          {ProjectsData.map((item, index) => (
             <motion.div
               key={index}
               className="relative p-6 rounded-lg shadow-lg overflow-hidden"

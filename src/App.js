@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { Footer,  NavBar } from "./components";
+import { Footer,  NavBar, ScrollTopBottom } from "./components";
 import { About, Contact, Home, Projects } from "./screens";
 
 function ScrollToTop() {
@@ -27,8 +27,10 @@ const App = () => {
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
+
             </main>
             <Footer />
+            <ScrollTopBottom/>
         </Router>
     );
 };
