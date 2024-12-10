@@ -3,7 +3,6 @@ import CustomBottom from "../Bottom";
 import { FaGithub, FaEye, FaSignOutAlt } from "react-icons/fa";
 const CustomModal = ({ isOpen, onClose, project }) => {
   if (!isOpen) return null; // Don't render the modal if it's not open
-  console.log("first" + project.image);
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-2xl p-6 mx-3 transform scale-95 opacity-0 animate-fade-in">
@@ -16,7 +15,7 @@ const CustomModal = ({ isOpen, onClose, project }) => {
             onClick={onClose}
             className="text-gray-600 hover:text-gray-900 transition"
           >
-            <FaSignOutAlt />
+            <FaSignOutAlt className="text-red-600" />
           </button>
         </div>
 

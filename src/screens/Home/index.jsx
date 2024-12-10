@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { MyCV, MyImage } from "../../assets";
+import React, { useRef, useState } from "react";
+import { AMSAPP, BloomifyMocup, MyCV, MyImage, ShoglMocup } from "../../assets";
 import Slider from "react-slick";
 import {
   FaReact,
@@ -16,7 +16,8 @@ import {
   FaDownload,
 } from "react-icons/fa"; // Icons for skills
 import { SiGmail } from "react-icons/si";
-
+import { useMediaQuery } from "react-responsive";
+import { motion, useInView } from "framer-motion";
 import styles from "./Home.module.css";
 import { CustomBottom, CustomModal } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
@@ -91,25 +92,26 @@ export default function Home() {
   ];
   const Projects = [
     {
-      title: "My Car APP",
+      title: "Academy Management System App",
       description:
-        "This is my portfolio website created using ReactJS and NextJS",
-      link: "https://github.com/Abdullah-Elseginy/portfolio",
-      image: "https://images.pexels.com/photos/572056/pexels-photo-572056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "A React Native mobile application that integrates with third-party APIs to display dynamic data in a clean UI.",
+      githubLink:
+        "https://github.com/Abdullah-Elseginy/Academy-management-System-App",
+      image: AMSAPP,
     },
     {
-      title: "My Projects",
+      title: "Shoghl App",
       description:
-        "This is my portfolio website created using ReactJS and NextJS",
-      link: "https://github.com/Abdullah-Elseginy/portfolio",
-      image: "https://i.ibb.co/2y6s37G/portfolio.png",
+        "This mobile application, built with React Native, facilitates the hiring process by allowing job seekers to apply and company owners to post job listings and hire candidates",
+      githubLink: "https://github.com/Abdullah-Elseginy/Shoghl-Application",
+      image: ShoglMocup,
     },
     {
-      title: "My AMS APP",
+      title: "Bloomify App",
       description:
-        "This is my portfolio website created using ReactJS and NextJS",
-      link: "https://github.com/Abdullah-Elseginy/portfolio",
-      image: "https://i.ibb.co/2y6s37G/portfolio.png",
+        "Bloomify is an e-commerce application designed for selling flowers online. It allows users to browse and purchase a wide variety of floral arrangements.",
+      githubLink: "https://github.com/Abdullah-Elseginy/BLOOMIFY-APP-ITI",
+      image: BloomifyMocup,
     },
   ];
   // Slick settings
@@ -139,21 +141,55 @@ export default function Home() {
       },
     ],
   };
+  // Mothions
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { triggerOnce: false }); // Animates every time in view
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+  // const ContactcardVariants = (direction) => ({
+  //   hidden: {
+  //     opacity: 0,
+  //     x: direction === "left" ? -100 : 100, // Start from left or right
+  //   },
+  //   visible: {
+  //     opacity: 1,
+  //     x: 0, // Move to original position
+  //     transition: { duration: 0.8, ease: "easeOut" },
+  //   },
+  // });
   return (
     <div className=" text-white min-h-screen">
       {/* Header Section */}
       <header className="text-center py-12 flex justify-around items-center flex-wrap mx-3 text-light-pink">
-        <div>
+        {/* Photo Section */}
+        <motion.div
+          initial={{ opacity: 0, x: -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <img
-            className={`rounded-full w-72 h-72 sm:w-32 sm:h-32 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover mx-auto   text-light-pink
-  shadow-lg transition-transform duration-500 hover:scale-110 hover:rotate-6 hover:shadow-xl border-cyan-600 border-2 ${styles.heartbeat} `}
+            className={`rounded-full w-72 h-72 sm:w-32 sm:h-32 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover mx-auto text-light-pink shadow-lg transition-transform duration-500 hover:scale-110 hover:rotate-6 hover:shadow-xl border-cyan-600 border-2 ${styles.heartbeat}`}
             src={MyImage}
             alt="ProfilePicture"
           />
-        </div>
-        <div>
+        </motion.div>
+
+        {/* Text Section */}
+        <motion.div
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
           <h1
-            className={`text-5xl font-bold mb-4 text-light-pink ${styles.heartbeat} `}
+            className={`text-4xl font-bold mb-4 text-light-pink ${styles.heartbeat}`}
           >
             Welcome to My Portfolio
           </h1>
@@ -168,10 +204,10 @@ export default function Home() {
               About Me
             </h2>
             <p
-              className={`text-lg max-w-3xl mx-auto  text-light-pink ${styles.heartbeat2}`}
+              className={`text-lg max-w-3xl mx-auto text-light-pink ${styles.heartbeat2}`}
             >
               I am passionate about creating beautiful and responsive web and
-              mobile apps. With a background in Information Technology. I
+              mobile apps. With a background in Information Technology, I
               combine technical expertise with a creative flair to build
               user-friendly digital experiences. I specialize in React, React
               Native, and Material UI, with experience in Redux, Tailwind CSS,
@@ -187,7 +223,7 @@ export default function Home() {
               </a>
             </div>
           </section>
-        </div>
+        </motion.div>
       </header>
 
       {/* Skills Section */}
@@ -198,12 +234,19 @@ export default function Home() {
         <div className="px-6">
           <Slider {...settings}>
             {skills.map((skillGroup, index) => (
-              <div key={index} className="p-4 h-96 w-full   ">
+              <motion.div
+                key={index}
+                className="p-4 h-96 w-full"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible" // Animate when in view
+                viewport={{ once: false, amount: 0.2 }} // Adjust trigger point
+              >
                 <div
-                  className={`bg-light-pink text-center rounded-lg shadow-lg hover:shadow-2xl transition-transform duration-300 hover:scale-105 p-6 w-full h-full`}
+                  className={`bg-gradient-to-b from-light-pink to-mint-green text-center rounded-lg shadow-lg hover:shadow-2xl transition-transform duration-300 hover:scale-105 p-6 w-full h-full`}
                 >
                   <div
-                    className={`bg-mint-green text-white py-3 rounded-t-lg flex flex-row items-center justify-between px-2  ${styles.heartbeat4}`}
+                    className={`bg-mint-green text-white py-3 rounded-t-lg flex flex-row items-center justify-between px-2 ${styles.heartbeat4}`}
                   >
                     <h3 className="text-xl font-semibold">
                       {skillGroup.category}
@@ -214,14 +257,14 @@ export default function Home() {
                     {skillGroup.items.map((item, idx) => (
                       <li
                         key={idx}
-                        className="text-md text-mint-blue px-3 py-1 rounded-lg font-medium shadow-sm hover:bg-mint-green hover:text-light-pink transition-colors duration-200"
+                        className="text-md text-mint-blue px-3 py-1 rounded-lg font-medium shadow-sm  hover:bg-mint-green hover:text-light-pink transition-colors duration-1000 scale-105"
                       >
                         {item}
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </Slider>
         </div>
@@ -231,19 +274,41 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-center mb-10 text-mint-blue">
           My Projects
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Project 1 */}
-          {Projects.map((item) => (
-            <div
-              className="relative bg-cover bg-center p-6 rounded-lg shadow-lg"
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          ref={ref}
+        >
+          {Projects.map((item, index) => (
+            <motion.div
+              key={index}
+              className="relative p-6 rounded-lg shadow-lg overflow-hidden"
               style={{
-                backgroundImage: `url(${item.image})`,
-                backgroundPosition: "center",
-                backgroundSize: "cover",
-                height: "300px", // Adjust the height as needed
+                height: "300px", // Full card height
               }}
+              variants={cardVariants}
+              initial="hidden"
+              animate={isInView ? "visible" : "hidden"} // Re-triggers on scroll
             >
-              <a href="#s" className="absolute top-5 right-0">
+              {/* Image with Full Card Background */}
+              <motion.div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 2 }} // 2 seconds hover effect
+              ></motion.div>
+
+              {/* Overlay Content */}
+              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg z-10">
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-lg text-gray-200">{item.description}</p>
+              </div>
+
+              {/* Open Project Button */}
+              <a href="#s" className="absolute top-5 right-0 z-10">
                 <CustomBottom
                   text="Open Project"
                   styles={"mr-5"}
@@ -253,16 +318,7 @@ export default function Home() {
                   }}
                 />
               </a>
-              <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4 rounded-b-lg">
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-lg text-gray-200">
-                  A React web application that integrates with third-party APIs
-                  to display dynamic data in a clean UI.
-                </p>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         <div className="mt-3">
@@ -274,17 +330,28 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section className="px-6 py-12 text-center bg-mint-green">
+      <section className="px-12 py-12 text-center bg-mint-green">
         <h2 className="text-4xl font-bold text-center mb-10 text-light-pink">
           Contact Me
         </h2>
-        <p className="text-lg  text-light-pink mb-4">
+        <p className="text-lg text-light-pink mb-4">
           If you are interested in working with me or just want to chat, feel
           free to reach out!
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 ">
-          {links.map((link) => (
-            <div className="flex flex-row items-center justify-center self-center bg-mint-blue border-light-pink border-2 p-2 rounded-lg my-3 hover:scale-95 transition-transform duration-500 shadow-lg">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {links.map((link, index) => (
+            <motion.div
+              key={link.title}
+              className={`flex items-center justify-center self-center bg-mint-blue border-light-pink border-2 p-2 rounded-lg my-3 shadow-lg transition-all duration-500 transform hover:bg-black`}
+              variants={{
+                hidden: { opacity: 0, x: index % 2 === 0 ? -30 : 30 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.2 }} // Animate every time it scrolls into view
+              whileHover={{ scale: 1.04 }} // Scale the card on hover
+            >
               <Link
                 to={link.href}
                 target={link.title !== "Send Email" ? "_blank" : "_self"}
@@ -294,16 +361,19 @@ export default function Home() {
                 {link.icon}
                 {link.title}
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
-        {/* Modal */}
-        <CustomModal
-          project={Data}
-          isOpen={showModal}
-          onClose={() => setShowModal(false)}
-        />
+
+        {/* Optionally hide content for mobile */}
+        {isMobile && <p>This is visible only on mobile</p>}
       </section>
+
+      <CustomModal
+        project={Data}
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      />
     </div>
   );
 }

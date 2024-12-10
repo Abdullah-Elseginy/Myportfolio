@@ -14,4 +14,27 @@ code {
 }
 
 
+/* styles.css */
+
+/* Scrollbar track */
+::-webkit-scrollbar {
+  width: 11px;
+  height: 12px;
+}
+
+/* Scrollbar thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+  background-color: #000B58;
+}
+
+/* Scrollbar when hovered */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #003161;
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: #006A67;
+}
+
 

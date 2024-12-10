@@ -6,7 +6,7 @@
       color: #7bff00; /* Heartbeat color */
     }
     25% {
-      transform: scale(1.1);
+      transform: scale(1.05);
       font-weight: bolder;
       color: #0033ff; /* Slightly darker red for the heartbeat */
     }
@@ -16,7 +16,7 @@
       color: #00ffbb; /* Original color */
     }
     75% {
-      transform: scale(1.1);
+      transform: scale(1.05);
       font-weight: bolder;
       color: #fff700; /* Slightly darker red */
     }
@@ -33,7 +33,7 @@
       color: #00eaff; /* Heartbeat color */
     }
     25% {
-      transform: scale(1.1);
+      transform: scale(1.05);
       font-weight: bolder;
       color: #ff00ee; /* Slightly darker red for the heartbeat */
     }
@@ -43,7 +43,7 @@
       color: #67ffd4; /* Original color */
     }
     75% {
-      transform: scale(1.1);
+      transform: scale(1.05);
       font-weight: bolder;
       color: #fff700; /* Slightly darker red */
     }
@@ -60,7 +60,7 @@
       color: #ffffff; /* Heartbeat color */
     }
     25% {
-      transform: scale(1.1);
+      transform: scale(1.05);
       font-weight: bolder;
       color: #09112f; /* Slightly darker red for the heartbeat */
     }
@@ -70,7 +70,7 @@
       color: #ff007b; /* Original color */
     }
     75% {
-      transform: scale(1.1);
+      transform: scale(1.05);
       font-weight: bolder;
       color: #b41616; /* Slightly darker red */
     }
@@ -104,7 +104,7 @@
     75% {      
       transform: scale(1.04);
       font-weight: bolder;
-      background-color: #550a0a; 
+      background-color: #000B58; 
       border:2px #003161 dotted  ;
 
     }
@@ -127,3 +127,4 @@
     animation: heartbeat4 50s ease-in-out infinite;
 
   }
+ 

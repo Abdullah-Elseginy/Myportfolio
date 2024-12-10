@@ -46,7 +46,7 @@ const Footer = () => {
                 href={link.href}
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-gray-400 flex items-center"
+                className="hover:text-green-500 flex items-center font-bold"
               >
                 {link.icon}
                 {link.title}
