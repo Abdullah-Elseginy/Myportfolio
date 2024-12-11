@@ -26,7 +26,7 @@ const Projects = () => {
         >
           {ProjectsData.map((item, index) => (
             <motion.div
-              key={index}
+              key={item.id}
               className="relative p-6 rounded-lg shadow-lg overflow-hidden"
               style={{
                 height: "300px", // Full card height

@@ -8,3 +8,6 @@ export { default as MyCV } from "./pdf/Abdullah-Elseginy-React-Native-CV.pdf";
 export { default as AMSAPP } from "./images/AMS-Mocup.png";
 export { default as ShoglMocup } from "./images/Shoghl-MockUp.png";
 export { default as BloomifyMocup } from "./images/bloomify-Mockup.png";
+export { default as FreshCartMocup } from "./images/FreshCartMockup.png";
+export { default as BloomifyWebtMocup } from "./images/BloomifyWebMocups.png";
+export { default as PortoflioWebtMocup } from "./images/portofloiMockUp.png";

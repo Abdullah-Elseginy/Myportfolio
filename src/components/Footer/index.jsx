@@ -40,8 +40,11 @@ const Footer = () => {
       <div className="container mx-auto text-center">
         <p>&copy; 2024 Abdullah Elseginy. All Rights Reserved.</p>
         <div className="mt-2 space-x-4 flex items-center justify-center flex-wrap">
-          {links.map((link) => (
-            <div className="flex flex-row items-center bg-black p-2 rounded-lg my-3 hover:scale-105 transition-transform duration-300 shadow-lg">
+          {links.map((link, index) => (
+            <div
+              key={index}
+              className="flex flex-row items-center bg-black p-2 rounded-lg my-3 hover:scale-105 transition-transform duration-300 shadow-lg"
+            >
               <a
                 href={link.href}
                 target="_blank"

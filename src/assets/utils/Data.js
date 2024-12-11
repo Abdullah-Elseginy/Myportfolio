@@ -1,9 +1,10 @@
 import { SiGmail } from "react-icons/si";
-import { AMSAPP, BloomifyMocup, ShoglMocup } from "..";
+import { AMSAPP, BloomifyMocup, BloomifyWebtMocup, FreshCartMocup, PortoflioWebtMocup, ShoglMocup } from "..";
 import { FaAws, FaFacebook, FaGit, FaGithub, FaInstagram, FaJs, FaLinkedin, FaLinux, FaMobileAlt, FaReact, FaWhatsapp } from "react-icons/fa";
 
 const ProjectsData = [
     {
+      id:"1",
       title: "Academy Management System App",
       description:
         "A React Native mobile application that integrates with third-party APIs to display dynamic data in a clean UI.",
@@ -12,6 +13,7 @@ const ProjectsData = [
       image: AMSAPP,
     },
     {
+      id:"2",
       title: "Shoghl App",
       description:
         "This mobile application, built with React Native, facilitates the hiring process by allowing job seekers to apply and company owners to post job listings and hire candidates",
@@ -19,6 +21,7 @@ const ProjectsData = [
       image: ShoglMocup,
     },
     {
+      id:"3",
       title: "Bloomify App",
       description:
         "Bloomify is an e-commerce application designed for selling flowers online. It allows users to browse and purchase a wide variety of floral arrangements.",
@@ -26,19 +29,30 @@ const ProjectsData = [
       image: BloomifyMocup,
     },
     {
-        title: "Bloomify App",
+      id:"4",
+        title: "FreshCart Website",
         description:
-          "Bloomify is an e-commerce application designed for selling flowers online. It allows users to browse and purchase a wide variety of floral arrangements.",
-        githubLink: "https://github.com/Abdullah-Elseginy/BLOOMIFY-APP-ITI",
-        image: BloomifyMocup,
+          "FreshCart is an e-commerce web application designed for selling Clothes online. It allows users to browse and purchase a wide variety of floral arrangements.",
+        githubLink: "https://github.com/Abdullah-Elseginy/E-Commerce-App",
+        image: FreshCartMocup,
       },
       {
-        title: "Academy Management System App",
+        id:"5",
+        title: "Bloomify web application",
         description:
-          "A React Native mobile application that integrates with third-party APIs to display dynamic data in a clean UI.",
+          "Bloomify is an e-commerce web application designed for selling flowers online. It allows users to browse and purchase a wide variety of floral arrangements.",
         githubLink:
-          "https://github.com/Abdullah-Elseginy/Academy-management-System-App",
-        image: AMSAPP,
+          "https://github.com/Paula-Eissa/BLOMIFY",
+        image: BloomifyWebtMocup,
+      },
+      {
+        id:"6",
+        title: "portfolio",
+        description:
+          "this portfolio website refer to my curated collection of works, achievements, or assets that showcase an individual's or organization's skills, accomplishments, and expertise",
+        githubLink:
+          "https://github.com/Abdullah-Elseginy/Myportfolio",
+        image: PortoflioWebtMocup,
       },
  
   ];

@@ -60,7 +60,7 @@ const NavBar = () => {
                 to={item.path}
                 className={`flex items-center px-4 py-2 rounded transition duration-300 ${
                   isActive(item.path)
-                    ? "text-light-pink border-b-2 border-light-pink"
+                    ? "text-light-pink border-b-2 border-light-pink font-semibold"
                     : "text-light-pink hover:text-mint-green hover:border-b-2 hover:border-light-pink"
                 }`}
               >
@@ -108,7 +108,7 @@ const NavBar = () => {
                 onClick={() => setIsMenuOpen(false)} // Close menu on click
                 className={`flex items-center justify-around px-4 py-2 rounded transition duration-300 ${
                   isActive(item.path)
-                    ? "text-light-pink border-b-2 border-light-pink"
+                    ? "text-light-pink border-b-2 border-light-pink font-semibold"
                     : "text-light-pink hover:text-mint-green hover:border-b-2 hover:border-light-pink"
                 }`}
               >
