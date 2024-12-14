@@ -1,4 +1,6 @@
+import { FaEnvelope, FaGlobe, FaHome, FaPhone } from "react-icons/fa";
 import { MyImage } from "../../assets";
+import { MdEmail } from "react-icons/md";
 
 const About = () => {
   const workExperience = [
@@ -47,35 +49,45 @@ const About = () => {
     },
   ];
   return (
-    <div className="bg-light-pink min-h-screen flex flex-col items-center py-10">
-      <h1 className="text-blue text-4xl font-bold mb-6">ABOUT ME</h1>
-      <div className="flex flex-col md:flex-row items-center md:items-start md:justify-center max-w-5xl bg-white shadow-lg p-6 rounded-lg">
+    <div className="min-h-screen flex flex-col items-center py-10">
+      <h1 className="text-light-pink text-4xl font-bold mb-6">ABOUT ME</h1>
+      <div className="flex flex-col md:flex-row items-center md:items-start md:justify-center max-w-5xl border-1 shadow-lg shadow-mint-blue p-6 mx-2 rounded-lg">
         {/* Left Section */}
         <div className="md:w-1/3 text-center md:text-left">
-          <h2 className="text-mint-green text-3xl font-bold">Your Name</h2>
-          <p className="text-gray-700 mt-2">
-            A passionate developer with expertise in Front-End and
-            Cross-Platform development, creating professional mobile and web
-            applications with clean, responsive designs.
+          <h2 className="text-mint-green text-3xl font-bold">
+            Abdullah Elseginy
+          </h2>
+          <p className="text-light-pink font-serif text-xs leading-5 mt-2">
+            Front-End & Cross-Platform Developer with a passion for mobile app
+            and web development. Skilled in quickly learning new technologies
+            and translating UI/UX designs into high-performance, responsive
+            code. Seeking to contribute to a team of talented developers
+            creating innovative mobile apps.
           </p>
           <ul className="mt-4 space-y-2">
-            <li className="flex items-center">
-              <span className="material-icons text-mint-blue mr-2">home</span>
-              Address: Your Address Here
-            </li>
-            <li className="flex items-center">
-              <span className="material-icons text-mint-blue mr-2">phone</span>
-              Phone: Your Phone Number
-            </li>
-            <li className="flex items-center">
-              <span className="material-icons text-mint-blue mr-2">email</span>
-              Email: your.email@example.com
-            </li>
-            <li className="flex items-center">
-              <span className="material-icons text-mint-blue mr-2">
-                language
+            <li className="flex items-center font-extralight">
+              <FaHome className="text-light-pink mr-1" />
+              <span className="material-icons text-light-pink mr-2 ">
+                Tanta,El gharbia,Egypt
               </span>
-              Website: yourwebsite.com
+            </li>
+            <li className="flex items-center font-extralight">
+              <FaPhone className="text-light-pink mr-1" />
+              <span className="material-icons text-light-pink mr-2 ">
+                +201066787955
+              </span>
+            </li>
+            <li className="flex items-center font-extralight">
+              <MdEmail className="text-light-pink mr-1" />
+              <span className="material-icons text-light-pink mr-2 ">
+                abdullah.ahmed.elseginy@gmail.com
+              </span>
+            </li>
+            <li className="flex items-center font-extralight">
+              <FaGlobe className="text-light-pink mr-1" />
+              <span className="material-icons text-light-pink mr-2 ">
+                https://abdullahelseginy.github.io/
+              </span>
             </li>
           </ul>
         </div>
@@ -83,15 +95,15 @@ const About = () => {
         {/* Center Section */}
         <div className="my-6 md:my-0 mx-10 md:w-1/3">
           <img
-            src="your-profile-picture.jpg"
+            src={MyImage}
             alt="Your Name"
-            className="rounded-full border-4 border-mint-green shadow-lg w-48 h-48 md:w-60 md:h-60 mx-auto"
+            className="rounded-full border-4 object-cover border-mint-green shadow-lg w-48 h-48 md:w-60 md:h-60 mx-auto"
           />
         </div>
 
         {/* Right Section */}
         <div className="md:w-1/3">
-          <h2 className="text-mint-green text-2xl font-bold mb-4">
+          <h2 className="text-mint-blue text-2xl font-bold mb-4">
             My Professional Skills
           </h2>
           <p className="text-gray-700 mb-4">
