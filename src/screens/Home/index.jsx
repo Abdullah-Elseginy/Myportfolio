@@ -3,6 +3,7 @@ import SectionOne from "./SectionOne";
 import Skills from "./SkillsSection";
 import ProjectsSection from "./ProjectsSection";
 import ContactSection from "./ContactSection";
+import { MainSkills } from "./MainSkills";
 
 export default function Home() {
   return (
@@ -15,6 +16,8 @@ export default function Home() {
       <ProjectsSection />
       {/* Contact Section */}
       <ContactSection />
+      {/* MAin Skills */}
+      <MainSkills />
     </div>
   );
 }
