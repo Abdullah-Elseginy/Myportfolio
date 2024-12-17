@@ -2,8 +2,11 @@ import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CustomBottom, CustomModal } from "../../components";
 import { ProjectsData } from "../../assets/utils/Data";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
+  const navigate = useNavigate();
+
   const [showModal, setShowModal] = useState(false);
   const [Data, Setdata] = useState({});
   const ref = useRef(null);

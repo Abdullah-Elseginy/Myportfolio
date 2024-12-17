@@ -2,14 +2,7 @@ import { FaGlobe, FaHome, FaPhone } from "react-icons/fa";
 import { MyImage } from "../../assets";
 import { MdEmail } from "react-icons/md";
 import { useEffect, useState } from "react";
-import {
-  hardSkills,
-  myCertificates,
-  myEducations,
-  myProjects,
-  skillsAbout,
-  softSkills,
-} from "../../assets/utils/Data";
+import { skillsAbout } from "../../assets/utils/Data";
 import { SoftSkills } from "./SoftSkills";
 import HardSkills from "./HardSkills";
 import MyProjects from "./MyProjects";

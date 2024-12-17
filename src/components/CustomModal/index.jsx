@@ -1,7 +1,10 @@
 import React from "react";
 import CustomBottom from "../Bottom";
 import { FaGithub, FaEye, FaSignOutAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 const CustomModal = ({ isOpen, onClose, project }) => {
+  const navigate = useNavigate();
+
   if (!isOpen) return null; // Don't render the modal if it's not open
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
@@ -46,6 +49,7 @@ const CustomModal = ({ isOpen, onClose, project }) => {
               text="View Project"
               buttonStyles={"bg-mint-green"}
               rigthIcon={<FaEye className="ml-1 text-light-pink" />}
+              onClick={() => navigate("/projectDetails")}
             />
           </a>
           <a
