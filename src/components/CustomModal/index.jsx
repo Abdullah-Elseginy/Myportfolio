@@ -24,7 +24,7 @@ const CustomModal = ({ isOpen, onClose, project }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 mx-1 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 mx-2 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-2xl p-6 mx-3 transform scale-95 opacity-0 animate-fade-in">
         {/* Modal Header */}
         <div className="flex justify-between items-center border-b pb-2 mb-4">
