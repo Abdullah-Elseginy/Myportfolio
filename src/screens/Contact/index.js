@@ -8,6 +8,7 @@ import {
 import emailjs from "@emailjs/browser";
 import { ClipLoader } from "react-spinners"; // Import a loading spinner
 import toast from "react-hot-toast"; // Import React Hot Toast
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
@@ -181,6 +182,10 @@ const Contact = () => {
           </a>
         </div>
       </div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Contact</title>
+      </Helmet>
     </div>
   );
 };

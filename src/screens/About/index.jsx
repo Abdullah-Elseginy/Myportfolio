@@ -8,6 +8,7 @@ import HardSkills from "./HardSkills";
 import MyProjects from "./MyProjects";
 import MyCertificates from "./MyCertificates";
 import MyEducation from "./MyEducation";
+import { Helmet } from "react-helmet";
 
 const About = () => {
   const [animatedSkills, setAnimatedSkills] = useState(
@@ -135,6 +136,10 @@ const About = () => {
       <MyCertificates />
       {/* My Education section */}
       <MyEducation />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>About</title>
+      </Helmet>
     </div>
   );
 };

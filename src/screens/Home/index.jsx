@@ -4,6 +4,7 @@ import Skills from "./SkillsSection";
 import ProjectsSection from "./ProjectsSection";
 import ContactSection from "./ContactSection";
 import { MainSkills } from "./MainSkills";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   return (
@@ -18,6 +19,10 @@ export default function Home() {
       <ContactSection />
       {/* MAin Skills */}
       <MainSkills />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+      </Helmet>
     </div>
   );
 }

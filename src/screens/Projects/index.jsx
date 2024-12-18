@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CustomBottom, CustomModal } from "../../components";
 import { ProjectsData } from "../../assets/utils/Data";
+import { Helmet } from "react-helmet";
 const Projects = () => {
-
   const [showModal, setShowModal] = useState(false);
   const [Data, Setdata] = useState({});
   const ref = useRef(null);
@@ -73,6 +73,10 @@ const Projects = () => {
         isOpen={showModal}
         onClose={() => setShowModal(false)}
       />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Projects</title>
+      </Helmet>
     </div>
   );
 };
