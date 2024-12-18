@@ -1,13 +1,30 @@
 import React from "react";
-import CustomBottom from "../Bottom";
+import Slider from "react-slick";
 import { FaGithub, FaEye, FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import CustomBottom from "../Bottom";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 const CustomModal = ({ isOpen, onClose, project }) => {
   const navigate = useNavigate();
 
   if (!isOpen) return null; // Don't render the modal if it's not open
+
+  // Slider settings
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    arrows: false,
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 mx-1 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
       <div className="bg-white rounded-lg shadow-lg w-full max-w-md md:max-w-2xl p-6 mx-3 transform scale-95 opacity-0 animate-fade-in">
         {/* Modal Header */}
         <div className="flex justify-between items-center border-b pb-2 mb-4">
@@ -22,18 +39,24 @@ const CustomModal = ({ isOpen, onClose, project }) => {
           </button>
         </div>
 
-        {/* Modal Image */}
+        {/* Modal Image Carousel */}
         <div className="mb-4">
-          <img
-            src={project.image}
-            loading="lazy"
-            alt={project.title}
-            className="rounded-md w-full max-h-64 object-cover"
-          />
+          <Slider {...settings}>
+            {project.images?.map((image, index) => (
+              <div key={index}>
+                <img
+                  src={image}
+                  loading="lazy"
+                  alt={`Slide ${index + 1}`}
+                  className="rounded-md w-full max-h-80 object-cover"
+                />
+              </div>
+            ))}
+          </Slider>
         </div>
 
         {/* Modal Content */}
-        <div className="text-gray-700 mb-4">
+        <div className="text-gray-700 mb-4 mt-8">
           <p>{project.description}</p>
         </div>
 
@@ -45,12 +68,12 @@ const CustomModal = ({ isOpen, onClose, project }) => {
             rel="noopener noreferrer"
             className="px-2 py-2 "
           >
-            <CustomBottom
+            {/* <CustomBottom
               text="View Project"
               buttonStyles={"bg-mint-green"}
               rigthIcon={<FaEye className="ml-1 text-light-pink" />}
               onClick={() => navigate("/projectDetails")}
-            />
+            /> */}
           </a>
           <a
             href={project.githubLink}
@@ -59,7 +82,7 @@ const CustomModal = ({ isOpen, onClose, project }) => {
             className=" px-4 py-2  "
           >
             <CustomBottom
-              text="GitHub"
+              text="Open Project in GitHub"
               rigthIcon={<FaGithub className="ml-1 text-light-pink" />}
             />
           </a>

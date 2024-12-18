@@ -2,10 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { CustomBottom, CustomModal } from "../../components";
 import { ProjectsData } from "../../assets/utils/Data";
-import { useNavigate } from "react-router-dom";
-
 const Projects = () => {
-  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
   const [Data, Setdata] = useState({});
@@ -42,7 +39,7 @@ const Projects = () => {
               <motion.div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url(${item.image})`,
+                  backgroundImage: `url(${item.images[0]})`,
                 }}
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 2 }} // 2 seconds hover effect

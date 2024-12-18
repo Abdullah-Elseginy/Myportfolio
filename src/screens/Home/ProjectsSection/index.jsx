@@ -42,7 +42,7 @@ function ProjectsSection() {
             <motion.div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage: `url(${item.image})`,
+                backgroundImage: `url(${item.images[0]})`,
               }}
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 2 }} // 2 seconds hover effect

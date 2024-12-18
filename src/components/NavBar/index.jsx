@@ -16,7 +16,7 @@ const NavBar = () => {
   const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-gradient-to-r from-blue to-mint-blue text-white py-4 px-5">
+    <nav className=" w-full z-50 bg-gradient-to-r from-blue to-mint-blue text-white py-4 px-5 shadow-lg">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo (Navigates to Home) */}
         <Link
@@ -113,7 +113,6 @@ const NavBar = () => {
                 }`}
               >
                 <img src={item.icon} alt="Logo" width={25} />
-
                 {item.name}
               </Link>
             </li>
