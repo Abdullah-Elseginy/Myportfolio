@@ -1,14 +1,28 @@
 import React from "react";
+import SectionOne from "./SectionOne";
+import Skills from "./SkillsSection";
+import ProjectsSection from "./ProjectsSection";
+import ContactSection from "./ContactSection";
+import { MainSkills } from "./MainSkills";
+import { Helmet } from "react-helmet";
 
-const Home = () => {
-    return (
-        <section className="min-h-screen bg-gray-100 flex items-center justify-center">
-            <div className="text-center">
-                <h1 className="text-4xl font-bold text-gray-800">Welcome to My Portfolio</h1>
-                <p className="text-lg mt-4 text-gray-600">Showcasing my projects and skills.</p>
-            </div>
-        </section>
-    );
-};
-
-export default Home;
+export default function Home() {
+  return (
+    <div className=" text-white min-h-screen">
+      {/* Header Section */}
+      <SectionOne />
+      {/* Skills Section */}
+      <Skills />
+      {/* Projects Section */}
+      <ProjectsSection />
+      {/* Contact Section */}
+      <ContactSection />
+      {/* MAin Skills */}
+      <MainSkills />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+      </Helmet>
+    </div>
+  );
+}

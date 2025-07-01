@@ -1,0 +1,130 @@
+/* Add this CSS to your styles.css or Tailwind CSS file */
+@keyframes heartbeat {
+    0% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #198549; /* Heartbeat color */
+    }
+    25% {
+      transform: scale(1.05);
+      font-weight: bolder;
+      color: #c6c8cf; /* Slightly darker red for the heartbeat */
+    }
+    50% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #0d644d; /* Original color */
+    }
+    75% {
+      transform: scale(1.05);
+      font-weight: bolder;
+      color: #797519; /* Slightly darker red */
+    }
+    100% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #6d0c0c; /* Return to the original color */
+    }
+  }
+@keyframes heartbeat1 {
+    0% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #0b5a61; /* Heartbeat color */
+    }
+    25% {
+      transform: scale(1.05);
+      font-weight: bolder;
+      color: #70106a; /* Slightly darker red for the heartbeat */
+    }
+    50% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #094b38; /* Original color */
+    }
+    75% {
+      transform: scale(1.05);
+      font-weight: bolder;
+      color: #74700b; /* Slightly darker red */
+    }
+    100% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #8400ff; /* Return to the original color */
+    }
+  }
+@keyframes heartbeat2 {
+    0% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #580909; /* Heartbeat color */
+    }
+    25% {
+      transform: scale(1.05);
+      font-weight: bolder;
+      color: #b7bbca; /* Slightly darker red for the heartbeat */
+    }
+    50% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #570f32; /* Original color */
+    }
+    75% {
+      transform: scale(1.05);
+      font-weight: bolder;
+      color: #b41616; /* Slightly darker red */
+    }
+    100% {
+      transform: scale(1);
+      font-weight: bold;
+      color: #59860b; /* Return to the original color */
+    }
+  }
+@keyframes heartbeat4 {
+    0% {
+      transform: scale(1);
+      font-weight: bold;
+      background-color: #c7baba; /* Heartbeat color */
+      border:2px #b9bcbe dotted  ;
+
+    }
+    25% {
+      transform: scale(1.04);
+      font-weight: bolder;
+      background-color: #c9cfd4;
+      border:2px #005661 dotted  ;
+
+    }
+    50% {
+      transform: scale(1);
+      background-color: #006A67;      
+       border:2px #c0c3c5 dotted  ;
+
+    }
+    75% {      
+      transform: scale(1.04);
+      font-weight: bolder;
+      background-color: #d8dfe2; 
+      border:2px #c3c6c9 dotted  ;
+
+    }
+    100% {
+      transform: scale(1);
+      background-color: #000000; 
+      border:2px #a8acb1 solid  ;
+    }
+  }
+  /* .heartbeat {
+    animation: heartbeat 30s ease-in-out infinite;
+  }
+  .heartbeat1 {
+    animation: heartbeat1 30s ease-in-out infinite;
+  }
+  .heartbeat2 {
+    animation: heartbeat2 30s ease-in-out infinite;
+  }
+  .heartbeat4{
+    animation: heartbeat4 50s ease-in-out infinite;
+
+  } */
+ 
