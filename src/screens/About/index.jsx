@@ -9,6 +9,7 @@ import MyProjects from "./MyProjects";
 import MyCertificates from "./MyCertificates";
 import MyEducation from "./MyEducation";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [animatedSkills, setAnimatedSkills] = useState(
@@ -43,6 +44,15 @@ const About = () => {
       intervals.forEach(clearInterval); // Clear intervals on unmount
     };
   }, []);
+
+  // Inside your component:
+  const [showImage, setShowImage] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowImage(true), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col items-center py-10 ">
       <h1 className="text-light-pink text-4xl font-bold mb-6 mt-7">ABOUT ME</h1>
@@ -88,12 +98,51 @@ const About = () => {
         </div>
 
         {/* Center Section */}
-        <div className="my-6 md:my-0 mx-10 md:w-1/3">
-          <img
-            src={MyImage}
-            alt="Your Name"
-            className="rounded-full border-4 object-cover transition-transform duration-500  hover:scale-110 hover:rotate-6 hover:shadow-xl border-mint-green shadow-xl  w-48 h-48 md:w-60 md:h-60 mx-auto"
-          />
+        <div className="my-6 md:my-0 mx-10 md:w-1/3 flex justify-center items-center relative w-full h-60">
+          {!showImage ? (
+            <motion.svg
+              width="160"
+              height="160"
+              viewBox="0 0 200 200"
+              className="absolute"
+            >
+              <motion.ellipse
+                cx="100"
+                cy="100"
+                rx="80"
+                ry="30"
+                stroke="#06b6d4"
+                strokeWidth="1"
+                fill="none"
+                initial={{ rotate: 0 }}
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                style={{ transformOrigin: "center" }}
+              />
+              <motion.ellipse
+                cx="100"
+                cy="100"
+                rx="30"
+                ry="80"
+                stroke="#06b6d4"
+                strokeWidth="1"
+                fill="none"
+                initial={{ rotate: 0 }}
+                animate={{ rotate: -360 }}
+                transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                style={{ transformOrigin: "center" }}
+              />
+            </motion.svg>
+          ) : (
+            <motion.img
+              src={MyImage}
+              alt="Your Name"
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="rounded-2xl border-2 object-cover transition-transform duration-500 hover:scale-110 hover:rotate-6 hover:shadow-xl border-mint-green shadow-xl w-48 h-48 md:w-60 md:h-60 mx-auto hover:shadow-cyan-500/50"
+            />
+          )}
         </div>
 
         {/* Right Section */}
