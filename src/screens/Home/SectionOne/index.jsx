@@ -1,25 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 import { CustomBottom } from "../../../components";
 import { FaDownload } from "react-icons/fa";
 import { MyCV, MyImage } from "../../../assets";
 import styles from "../Home.module.css";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
 
 function SectionOne() {
+  const [showImage, setShowImage] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowImage(true);
+    }, 1500); // 1.5 seconds loading
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <header className="text-center py-12 flex justify-around items-center flex-wrap mx-3 text-light-pink ">
       {/* Photo Section */}
-      <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1 }}
-      >
-        <img
-          className={`rounded-full w-72 h-72 sm:w-32 sm:h-32 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover mx-auto text-light-pink shadow-lg transition-transform duration-500 hover:scale-110 hover:rotate-6 hover:shadow-xl border-cyan-600 border-2 ${styles.heartbeat}`}
-          src={MyImage}
-          alt="ProfilePicture"
-        />
-      </motion.div>
+      <div className="relative w-72 h-72 sm:w-32 sm:h-32 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto flex items-center justify-center">
+        {!showImage ? (
+          <motion.svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 200 200"
+            className="absolute"
+          >
+            <motion.ellipse
+              cx="100"
+              cy="100"
+              rx="80"
+              ry="30"
+              stroke="#06b6d4"
+              strokeWidth="4"
+              fill="none"
+              initial={{ rotate: 0 }}
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+              style={{ transformOrigin: "center" }}
+            />
+            <motion.ellipse
+              cx="100"
+              cy="100"
+              rx="30"
+              ry="80"
+              stroke="#06b6d4"
+              strokeWidth="4"
+              fill="none"
+              initial={{ rotate: 0 }}
+              animate={{ rotate: -360 }}
+              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+              style={{ transformOrigin: "center" }}
+            />
+          </motion.svg>
+        ) : (
+          <motion.img
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            src={MyImage}
+            alt="ProfilePicture"
+            className="rounded-full w-full h-full object-cover shadow-2xl border-4 border-cyan-600 transition-transform duration-500 hover:scale-105 hover:rotate-3 hover:shadow-cyan-500/50"
+          />
+        )}
+      </div>
 
       {/* Text Section */}
       <motion.div
@@ -28,7 +74,7 @@ function SectionOne() {
         transition={{ duration: 1 }}
       >
         <h1
-          className={`text-4xl font-bold mb-4 text-light-pink ${styles.heartbeat}`}
+          className={`text-4xl font-bold mb-4 text-light-pink font-sans ${styles.heartbeat}`}
         >
           Welcome to My Portfolio
         </h1>
@@ -38,7 +84,7 @@ function SectionOne() {
         {/* About Me Section */}
         <section className="px-6 py-12 text-center">
           <h2
-            className={`text-3xl font-semibold mb-6 text-blue ${styles.heartbeat2}`}
+            className={`text-3xl font-thin font-mono mb-6 text-blue ${styles.heartbeat2}`}
           >
             About Me
           </h2>

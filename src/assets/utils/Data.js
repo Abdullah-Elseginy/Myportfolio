@@ -97,7 +97,7 @@ const ProjectsData = [
     },
     {
       title: "LinkedIn",
-      href: "https://www.linkedin.com/in/abdullah-elseginy-7bbbb21ba/",
+      href: "https://www.linkedin.com/in/abdullahelseginy/",
       icon: <FaLinkedin className="mr-2 w-36 h-36 text-light-pink" />,
     },
     {

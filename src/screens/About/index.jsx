@@ -81,7 +81,7 @@ const About = () => {
             <li className="flex items-center font-extralight">
               <FaGlobe className="text-light-pink mr-1" />
               <span className="material-icons text-light-pink mr-2 ">
-                https://abdullahelseginy.github.io/
+                https://abdullah-elseginy.vercel.app/
               </span>
             </li>
           </ul>

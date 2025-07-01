@@ -13,30 +13,62 @@ const CustomBottom = ({
   return (
     <div className={`flex justify-center ${styles}`}>
       <button
-        className={`p-2 h-10 bg-mint-blue text-light-pink hover:bg-mint-green hover:scale-105 transition-transform duration-300 rounded-md flex items-center justify-between shadow-lg ${buttonStyles}`}
         title={title}
         onClick={onClick}
+        className={`
+          group
+          relative
+          inline-flex
+          items-center
+          gap-2
+          px-5
+          py-3
+          bg-gradient-to-r
+          from-mint-blue
+          to-cyan-500
+          text-light-pink
+          hover:from-mint-green
+          hover:to-emerald-400
+          hover:scale-[1.03]
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-cyan-500
+          font-semibold
+          rounded-xl
+          shadow-md
+          transition-all
+          duration-300
+          ${buttonStyles}
+        `}
       >
-        <h4 className={`font-bold ${textStyle}`}>{text}</h4>
-        {rigthIcon && rigthIcon}
+        <span className={`text-sm md:text-base ${textStyle}`}>
+          {text}
+        </span>
+        {rigthIcon && (
+          <span className="text-lg ml-1 transition-transform group-hover:translate-x-1">
+            {rigthIcon}
+          </span>
+        )}
       </button>
     </div>
   );
 };
 
 CustomBottom.propTypes = {
-  text: PropTypes.string.isRequired, // Text to display on the button
-  title: PropTypes.string, // Tooltip text
-  onClick: PropTypes.func.isRequired, // Function to execute on click
-  styles: PropTypes.string, // Additional styles for the container
-  buttonStyles: PropTypes.string, // Additional styles for the button
-  textStyle: PropTypes.string, // Additional styles for the text within the button
+  text: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
+  styles: PropTypes.string,
+  buttonStyles: PropTypes.string,
+  textStyle: PropTypes.string,
+  rigthIcon: PropTypes.node,
 };
 
 CustomBottom.defaultProps = {
-  title: "Button", // Default title
-  styles: "", // No additional container styles by default
-  buttonStyles: "", // No additional button styles by default
+  title: "Button",
+  styles: "",
+  buttonStyles: "",
+  textStyle: "",
 };
 
 export default CustomBottom;
