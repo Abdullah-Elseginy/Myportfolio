@@ -9,12 +9,13 @@ import emailjs from "@emailjs/browser";
 import { ClipLoader } from "react-spinners"; // Import a loading spinner
 import toast from "react-hot-toast"; // Import React Hot Toast
 import { Helmet } from "react-helmet";
+import { CustomBottom } from "../../components";
 
 const Contact = () => {
   const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
   const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-  console.log("service template id: " + templateId)
+  console.log("service template id: " + templateId);
   const [isLoading, setIsLoading] = useState(false); // To show loading spinner
   const [errors, setErrors] = useState({}); // To store error messages for form fields
   const formRef = useRef(); // Reference to the form element
@@ -150,17 +151,20 @@ const Contact = () => {
             <p className="text-red-500 text-sm mt-1">{errors.message}</p>
           )}
         </div>
-        <button
-          type="submit"
-          className="w-full px-4 py-2 bg-mint-green text-white rounded-lg hover:bg-opacity-80 flex justify-center items-center"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <ClipLoader size={24} color="#ffffff" />
-          ) : (
-            "Send Message"
-          )}
-        </button>
+        <CustomBottom
+          text={
+            isLoading ? (
+              <ClipLoader size={20} color="#FFF4B7" />
+            ) : (
+              "Send Message"
+            )
+          }
+          title="Send Message"
+          onClick={handleSubmit} // Replace with your actual handler
+          styles="w-full"
+          buttonStyles="w-full py-2 flex justify-center items-center"
+          textStyle="text-white"
+        />
       </form>
 
       <div className="mt-12 text-center">

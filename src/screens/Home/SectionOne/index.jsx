@@ -34,7 +34,7 @@ function SectionOne() {
               rx="80"
               ry="30"
               stroke="#06b6d4"
-              strokeWidth="4"
+              strokeWidth="1"
               fill="none"
               initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
@@ -47,7 +47,7 @@ function SectionOne() {
               rx="30"
               ry="80"
               stroke="#06b6d4"
-              strokeWidth="4"
+              strokeWidth="1"
               fill="none"
               initial={{ rotate: 0 }}
               animate={{ rotate: -360 }}
@@ -62,7 +62,7 @@ function SectionOne() {
             transition={{ duration: 0.8 }}
             src={MyImage}
             alt="ProfilePicture"
-            className="rounded-full w-full h-full object-cover shadow-2xl border-4 border-cyan-600 transition-transform duration-500 hover:scale-105 hover:rotate-3 hover:shadow-cyan-500/50"
+            className="rounded-2xl w-full h-full object-cover shadow-2xl border-2 border-cyan-600 transition-transform duration-1000 hover:scale-105 hover:rotate-3 hover:shadow-cyan-500/50"
           />
         )}
       </div>
@@ -84,10 +84,11 @@ function SectionOne() {
         {/* About Me Section */}
         <section className="px-6 py-12 text-center">
           <h2
-            className={`text-3xl font-thin font-mono mb-6 text-blue ${styles.heartbeat2}`}
+            className={`text-3xl font-bold mb-6 text-light-pink underline decoration-cyan-500 underline-offset-8 ${styles.heartbeat2}`}
           >
             About Me
           </h2>
+
           <p
             className={`text-lg max-w-3xl mx-auto text-light-pink ${styles.heartbeat2}`}
           >
