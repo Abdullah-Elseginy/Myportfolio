@@ -3,7 +3,6 @@ import SectionOne from "./SectionOne";
 import Skills from "./SkillsSection";
 import ProjectsSection from "./ProjectsSection";
 import ContactSection from "./ContactSection";
-import { MainSkills } from "./MainSkills";
 import { Helmet } from "react-helmet";
 
 export default function Home() {
@@ -17,8 +16,7 @@ export default function Home() {
       <ProjectsSection />
       {/* Contact Section */}
       <ContactSection />
-      {/* MAin Skills */}
-      <MainSkills />
+
       <Helmet>
         <meta charSet="utf-8" />
         <title>Home</title>

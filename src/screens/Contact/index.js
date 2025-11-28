@@ -4,48 +4,43 @@ import {
   FaInstagram,
   FaLinkedin,
   FaWhatsapp,
+  FaPaperPlane,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
-import { ClipLoader } from "react-spinners"; // Import a loading spinner
-import toast from "react-hot-toast"; // Import React Hot Toast
+import { ClipLoader } from "react-spinners";
+import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
   const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
   const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
-  console.log("service template id: " + templateId)
-  const [isLoading, setIsLoading] = useState(false); // To show loading spinner
-  const [errors, setErrors] = useState({}); // To store error messages for form fields
-  const formRef = useRef(); // Reference to the form element
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
+  const formRef = useRef();
 
   const validateForm = (formData) => {
     const { user_name, user_email, subject, message } = formData;
     const formErrors = {};
-    if (!user_name.trim()) {
-      formErrors.user_name = "Name is required.";
-    }
+    if (!user_name.trim()) formErrors.user_name = "Name is required.";
     if (!user_email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user_email)) {
       formErrors.user_email = "Valid email is required.";
     }
-    if (!subject.trim()) {
-      formErrors.subject = "Subject is required.";
-    }
-    if (!message.trim()) {
-      formErrors.message = "Message is required.";
-    }
+    if (!subject.trim()) formErrors.subject = "Subject is required.";
+    if (!message.trim()) formErrors.message = "Message is required.";
     return formErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setErrors({}); // Clear previous errors
+    setErrors({});
 
     const formData = Object.fromEntries(new FormData(formRef.current));
     const formErrors = validateForm(formData);
     if (Object.keys(formErrors).length > 0) {
-      setErrors(formErrors); // Set the errors
+      setErrors(formErrors);
       setIsLoading(false);
       return;
     }
@@ -59,7 +54,7 @@ const Contact = () => {
       );
       if (result.status === 200) {
         toast.success("Message sent successfully!");
-        formRef.current.reset(); // Clear the form
+        formRef.current.reset();
       } else {
         throw new Error("Failed to send email.");
       }
@@ -71,121 +66,124 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 text-white">
-      <h1 className="text-3xl font-bold text-light-pink mb-6">Contact Me</h1>
-      <form
-        ref={formRef}
-        onSubmit={handleSubmit}
-        className="max-w-lg mx-auto bg-mint-blue p-6 shadow-md rounded-lg"
-      >
-        <div className="mb-4">
-          <label
-            className="block text-light-pink font-medium mb-2"
-            htmlFor="name"
-          >
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="user_name"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-mint-blue focus:outline-none transition-all duration-300 focus:shadow-lg text-gray-800"
-            placeholder="Your Name"
-          />
-          {errors.user_name && (
-            <p className="text-red-500 text-sm mt-1">{errors.user_name}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-light-pink font-medium mb-2"
-            htmlFor="email"
-          >
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="user_email"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-mint-blue focus:outline-none transition-all duration-300 focus:shadow-lg text-gray-800"
-            placeholder="Your Email"
-          />
-          {errors.user_email && (
-            <p className="text-red-500 text-sm mt-1">{errors.user_email}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-light-pink font-medium mb-2"
-            htmlFor="subject"
-          >
-            Subject
-          </label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-mint-blue focus:outline-none transition-all duration-300 focus:shadow-lg text-gray-800"
-            placeholder="Subject"
-          />
-          {errors.subject && (
-            <p className="text-red-500 text-sm mt-1">{errors.subject}</p>
-          )}
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-light-pink font-medium mb-2"
-            htmlFor="message"
-          >
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-mint-blue focus:outline-none transition-all duration-300 focus:shadow-lg text-gray-800"
-            placeholder="Your Message"
-          ></textarea>
-          {errors.message && (
-            <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-          )}
-        </div>
-        <button
-          type="submit"
-          className="w-full px-4 py-2 bg-mint-green text-white rounded-lg hover:bg-opacity-80 flex justify-center items-center"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <ClipLoader size={24} color="#ffffff" />
-          ) : (
-            "Send Message"
-          )}
-        </button>
-      </form>
-
-      <div className="mt-12 text-center">
-        <h2 className="text-2xl font-semibold mb-4 text-light-pink">
-          Follow Me
-        </h2>
-        <div className="flex justify-center space-x-6 text-3xl text-mint-green">
-          <a href="https://facebook.com" className="hover:text-mint-green">
-            <FaFacebook />
-          </a>
-          <a href="https://instagram.com" className="hover:text-mint-green">
-            <FaInstagram />
-          </a>
-          <a href="https://linkedin.com" className="hover:text-mint-green">
-            <FaLinkedin />
-          </a>
-          <a href="https://wa.me/1234567890" className="hover:text-mint-green">
-            <FaWhatsapp />
-          </a>
-        </div>
-      </div>
+    <div className="min-h-screen pt-24 pb-12 px-6 bg-primary flex flex-col items-center">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Contact</title>
+        <title>Contact | Abdullah Elseginy</title>
       </Helmet>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-2xl"
+      >
+        <h1 className="text-4xl font-bold text-text-primary mb-8 text-center">
+          Get In Touch
+        </h1>
+
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          className="bg-secondary p-8 rounded-xl shadow-2xl border border-secondary hover:border-accent/30 transition-colors duration-300"
+        >
+          <div className="mb-6">
+            <label className="block text-text-secondary font-mono text-sm mb-2" htmlFor="name">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="user_name"
+              className="w-full px-4 py-3 bg-primary border border-gray-700 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none text-text-primary transition-all"
+              placeholder="Your Name"
+            />
+            {errors.user_name && (
+              <p className="text-red-400 text-xs mt-1 font-mono">{errors.user_name}</p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-text-secondary font-mono text-sm mb-2" htmlFor="email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="user_email"
+              className="w-full px-4 py-3 bg-primary border border-gray-700 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none text-text-primary transition-all"
+              placeholder="Your Email"
+            />
+            {errors.user_email && (
+              <p className="text-red-400 text-xs mt-1 font-mono">{errors.user_email}</p>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-text-secondary font-mono text-sm mb-2" htmlFor="subject">
+              Subject
+            </label>
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              className="w-full px-4 py-3 bg-primary border border-gray-700 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none text-text-primary transition-all"
+              placeholder="Subject"
+            />
+            {errors.subject && (
+              <p className="text-red-400 text-xs mt-1 font-mono">{errors.subject}</p>
+            )}
+          </div>
+
+          <div className="mb-8">
+            <label className="block text-text-secondary font-mono text-sm mb-2" htmlFor="message">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              className="w-full px-4 py-3 bg-primary border border-gray-700 rounded-lg focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none text-text-primary transition-all resize-none"
+              placeholder="Your Message"
+            ></textarea>
+            {errors.message && (
+              <p className="text-red-400 text-xs mt-1 font-mono">{errors.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="w-full px-6 py-4 bg-accent/10 text-accent border border-accent rounded-lg hover:bg-accent hover:text-primary font-bold transition-all duration-300 flex justify-center items-center gap-2"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <ClipLoader size={20} color="#64ffda" />
+            ) : (
+              <>
+                Send Message <FaPaperPlane />
+              </>
+            )}
+          </button>
+        </form>
+
+        <div className="mt-12 text-center">
+          <p className="text-text-secondary font-mono mb-4">Or connect with me on</p>
+          <div className="flex justify-center space-x-6 text-2xl text-text-secondary">
+            <a href="https://facebook.com" className="hover:text-accent hover:-translate-y-1 transition-all duration-300">
+              <FaFacebook />
+            </a>
+            <a href="https://instagram.com" className="hover:text-accent hover:-translate-y-1 transition-all duration-300">
+              <FaInstagram />
+            </a>
+            <a href="https://linkedin.com" className="hover:text-accent hover:-translate-y-1 transition-all duration-300">
+              <FaLinkedin />
+            </a>
+            <a href="https://wa.me/1234567890" className="hover:text-accent hover:-translate-y-1 transition-all duration-300">
+              <FaWhatsapp />
+            </a>
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };

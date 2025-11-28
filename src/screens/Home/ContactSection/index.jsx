@@ -1,50 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { links } from "../../../assets/utils/Data";
-import { useMediaQuery } from "react-responsive";
+import { FaEnvelope } from "react-icons/fa";
 
 function ContactSection() {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
-
   return (
-    <section className="px-12 py-12 text-center bg-mint-green">
-      <h2 className="text-4xl font-bold text-center mb-10 text-light-pink">
-        Contact Me
-      </h2>
-      <p className="text-lg text-light-pink mb-4">
-        If you are interested in working with me or just want to chat, feel free
-        to reach out!
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {links.map((link, index) => (
-          <motion.div
-            key={link.title}
-            className={`flex items-center justify-center self-center bg-mint-blue border-light-pink border-2 p-2 rounded-lg my-3 shadow-lg transition-all duration-500 transform hover:bg-black`}
-            variants={{
-              hidden: { opacity: 0, x: index % 2 === 0 ? -30 : 30 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.2 }} // Animate every time it scrolls into view
-            whileHover={{ scale: 1.04 }} // Scale the card on hover
-          >
-            <Link
-              to={link.href}
-              target={link.title !== "Send Email" ? "_blank" : "_self"}
-              rel="noreferrer"
-              className="flex items-center flex-col font-bold text-light-pink"
-            >
-              {link.icon}
-              {link.title}
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+    <section className="px-6 py-20 bg-primary text-center" id="contact">
+      <div className="container mx-auto max-w-4xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl font-bold text-text-primary mb-4 flex items-center justify-center gap-3">
+            <span className="text-accent">04.</span> What's Next?
+          </h2>
+          <div className="w-20 h-1 bg-accent mx-auto rounded-full mb-8"></div>
 
-      {/* Optionally hide content for mobile */}
-      {isMobile && <p>This is visible only on mobile</p>}
+          <h3 className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            Get In Touch
+          </h3>
+          <p className="text-text-secondary text-lg mb-12 max-w-xl mx-auto leading-relaxed">
+            I'm currently looking for new opportunities, my inbox is always open.
+            Whether you have a question or just want to say hi, I'll try my best
+            to get back to you!
+          </p>
+
+          <motion.a
+            href="mailto:abdullah.ahmed.elseginy@gmail.com"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-4 border-2 border-accent text-accent rounded hover:bg-accent/10 transition-all duration-300 font-mono text-lg"
+          >
+            <FaEnvelope />
+            Say Hello
+          </motion.a>
+        </motion.div>
+      </div>
     </section>
   );
 }

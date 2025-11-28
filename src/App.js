@@ -25,7 +25,7 @@ const App = () => {
       <NavBar />
       <ScrollToTop />
       <Toaster position="top-center" reverseOrder={false} />
-      <main className="bg-gradient-to-r from-blue via-mint-blue to-mint-green text-white min-h-screen">
+      <main className="bg-primary text-text-primary min-h-screen font-sans selection:bg-accent selection:text-primary">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
