@@ -48,8 +48,24 @@ const NavBar = () => {
     }
   }, [isDarkMode]);
 
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -62,7 +78,8 @@ const NavBar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2 text-2xl font-bold text-accent hover:text-text-primary transition-colors duration-300"
+          onClick={closeMenu}
+          className="flex items-center gap-2 text-2xl font-bold text-accent hover:text-text-primary transition-colors duration-300 relative z-50"
         >
           <img src={Logo2} alt="Logo" className="w-8 h-8 object-contain " />
           <span className="font-mono mt-1">Portfolio</span>
@@ -99,51 +116,88 @@ const NavBar = () => {
         </div>
 
         {/* Mobile Controls */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-4 relative z-50">
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-secondary text-accent hover:bg-accent hover:text-primary transition-all duration-300"
+            aria-label="Toggle Theme"
           >
             {isDarkMode ? <FaSun /> : <FaMoon />}
           </button>
           <button
             className="text-accent text-2xl focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
           >
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 bg-secondary/95 backdrop-blur-md z-40 flex flex-col items-center justify-center md:hidden"
-          >
-            <ul className="flex flex-col space-y-8 text-center">
-              {navItems.map((item) => (
-                <li key={item.path}>
-                  <Link
-                    to={item.path}
-                    onClick={() => setIsMenuOpen(false)}
-                    className={`flex flex-col items-center gap-2 text-xl font-mono transition-colors duration-300 ${
-                      isActive(item.path)
-                        ? "text-accent"
-                        : "text-text-primary hover:text-accent"
-                    }`}
-                  >
-                    <span className="text-3xl">{item.icon}</span>
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              onClick={closeMenu}
+            />
+
+            {/* Sidebar */}
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-[280px] bg-secondary/95 backdrop-blur-lg shadow-2xl z-50 md:hidden overflow-y-auto"
+            >
+              <div className="flex flex-col h-full pt-24 pb-8 px-6">
+                {/* Navigation */}
+                <nav className="flex-1">
+                  <ul className="flex flex-col space-y-2">
+                    {navItems.map((item, index) => (
+                      <motion.li
+                        key={item.path}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <Link
+                          to={item.path}
+                          onClick={closeMenu}
+                          className={`flex items-center gap-4 px-4 py-4 rounded-xl font-mono transition-all duration-300 ${
+                            isActive(item.path)
+                              ? "bg-accent text-primary shadow-lg"
+                              : "text-text-primary hover:bg-accent/10 hover:text-accent"
+                          }`}
+                        >
+                          <span className="text-2xl">{item.icon}</span>
+                          <span className="text-lg font-medium">{item.name}</span>
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </nav>
+
+                {/* Footer */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-auto pt-6 border-t border-secondary"
+                >
+                  <p className="text-text-secondary text-sm text-center font-mono">
+                    © 2024 Portfolio
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>
