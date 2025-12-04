@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { Footer, NavBar, ScrollTopBottom } from "./components";
 import { About, Contact, Home, ProjectDetails, Projects } from "./screens";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,7 +24,7 @@ const App = () => {
       {/* <Header /> */}
       <NavBar />
       <ScrollToTop />
-      <Toaster position="top-center" reverseOrder={false} />
+      <Toaster richColors position="top-center" />
       <main className="bg-primary text-text-primary min-h-screen font-sans selection:bg-accent selection:text-primary">
         <Routes>
           <Route path="/" element={<Home />} />

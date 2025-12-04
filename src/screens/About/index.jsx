@@ -90,12 +90,12 @@ const About = () => {
               <div className="flex items-center gap-3">
                 <FaGlobe className="text-accent" />
                 <a
-                  href="https://abdullahelseginy.github.io/"
+                  href="https://abdullah-elseginy.vercel.app/"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-accent transition-colors"
+                  className="hover:text-accent transition-colors underline"
                 >
-                  abdullahelseginy.github.io
+                  portfolio
                 </a>
               </div>
             </div>

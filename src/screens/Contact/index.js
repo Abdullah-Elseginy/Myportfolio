@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 import { ClipLoader } from "react-spinners";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 
@@ -153,7 +153,7 @@ const Contact = () => {
 
           <button
             type="submit"
-            className="w-full px-6 py-4 bg-accent/10 text-accent border border-accent rounded-lg hover:bg-accent hover:text-primary font-bold transition-all duration-300 flex justify-center items-center gap-2"
+            className="w-full px-6 py-4 bg-accent/10 text-accent border border-accent rounded-lg font-bold transition-all duration-300 flex justify-center items-center gap-2"
             disabled={isLoading}
           >
             {isLoading ? (

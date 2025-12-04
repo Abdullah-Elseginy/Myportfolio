@@ -2,6 +2,7 @@ import { SiGmail } from "react-icons/si";
 import { Am1, Am2, AMSAPP, Bl1, Bl2, Bl3, BloomifyMocup, BloomifyWebtMocup, FreshCartMocup, Por1, PortoflioWebtMocup, Sh1, Sh2, Sh3, Sh4, Sh5, ShoglMocup } from "..";
 import { FaAws, FaFacebook, FaGit, FaGithub, FaInstagram, FaJs, FaLinkedin, FaLinux, FaMobileAlt, FaReact, FaWhatsapp } from "react-icons/fa";
 
+
 const ProjectsData = [
     {
       id:"1",
@@ -124,9 +125,9 @@ const ProjectsData = [
   ];
   const skillsAbout = [
     { name: "Mobile App Development", percentage: 95, bgColor: "bg-blue" },
-    { name: "Web Development", percentage: 75, bgColor: "bg-mint-blue" },
+    { name: "Web Development", percentage: 85, bgColor: "bg-mint-blue" },
     { name: "React Native", percentage: 95, bgColor: "bg-mint-green" },
-    { name: "React js", percentage: 80, bgColor: "bg-blue" },
+    { name: "React js", percentage: 85, bgColor: "bg-blue" },
   ];
   const softSkills = [
     {
@@ -305,7 +306,7 @@ const ProjectsData = [
     {
       title: "Faculty of Computers and Information",
       institution: "Tanta University, Egypt",
-      time: "Graduation: 2022",
+      time: "Graduation: July 2023",
       description: "Bachelor's degree in Information Technology"
     }
   ];

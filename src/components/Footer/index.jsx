@@ -6,6 +6,7 @@ import {
   FaInstagram,
   FaWhatsapp,
 } from "react-icons/fa";
+import packageJson from "../../../package.json";
 
 const Footer = () => {
   const links = [
@@ -16,7 +17,7 @@ const Footer = () => {
     },
     {
       title: "LinkedIn",
-      href: "https://www.linkedin.com/in/abdullah-elseginy-7bbbb21ba/",
+      href: "https://www.linkedin.com/in/abdullahelseginy/",
       icon: <FaLinkedin />,
     },
     {
@@ -55,6 +56,9 @@ const Footer = () => {
         </div>
         <p className="font-mono text-sm">
           &copy; {new Date().getFullYear()} Abdullah Elseginy. Built with React & Tailwind.
+        </p>
+        <p className="font-mono text-xs text-text-secondary/60 mt-2">
+          version {packageJson.version}
         </p>
       </div>
     </footer>

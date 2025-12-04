@@ -2,12 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaHome, FaUser, FaCode, FaEnvelope, FaBars, FaTimes, FaSun, FaMoon } from "react-icons/fa";
-import { Logo } from "../../assets";
+import { Logo2 } from "../../assets";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // Initialize theme from localStorage, then system preference, then default to dark
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return true; // System prefers dark mode
+    }
+    return false; // System prefers light mode (or no preference)
+  });
   const location = useLocation();
 
   const navItems = [
@@ -30,8 +41,10 @@ const NavBar = () => {
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.remove("light-mode");
+      localStorage.setItem('theme', 'dark');
     } else {
       document.body.classList.add("light-mode");
+      localStorage.setItem('theme', 'light');
     }
   }, [isDarkMode]);
 
@@ -51,8 +64,8 @@ const NavBar = () => {
           to="/"
           className="flex items-center gap-2 text-2xl font-bold text-accent hover:text-text-primary transition-colors duration-300"
         >
-          <img src={Logo} alt="Logo" className="w-8 h-8 object-contain" />
-          <span className="font-mono">Portfolio</span>
+          <img src={Logo2} alt="Logo" className="w-8 h-8 object-contain " />
+          <span className="font-mono mt-1">Portfolio</span>
         </Link>
 
         {/* Desktop Menu */}
