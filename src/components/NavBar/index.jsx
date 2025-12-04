@@ -69,72 +69,74 @@ const NavBar = () => {
   };
 
   return (
-    <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? "glass shadow-lg py-2" : "bg-transparent py-4"
-      }`}
-    >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        {/* Logo */}
-        <Link
-          to="/"
-          onClick={closeMenu}
-          className="flex items-center gap-2 text-2xl font-bold text-accent hover:text-text-primary transition-colors duration-300 relative z-50"
-        >
-          <img src={Logo2} alt="Logo" className="w-8 h-8 object-contain " />
-          <span className="font-mono mt-1">Portfolio</span>
-        </Link>
-
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
-          <ul className="flex space-x-8">
-            {navItems.map((item) => (
-              <li key={item.path}>
-                <Link
-                  to={item.path}
-                  className={`flex items-center gap-2 text-sm font-mono transition-all duration-300 ${
-                    isActive(item.path)
-                      ? "text-accent"
-                      : "text-text-secondary hover:text-accent"
-                  }`}
-                >
-                  <span className="text-lg">{item.icon}</span>
-                  {item.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-secondary text-accent hover:bg-accent hover:text-primary transition-all duration-300"
-            aria-label="Toggle Theme"
+    <>
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          scrolled ? "glass shadow-lg py-2" : "bg-transparent py-4"
+        }`}
+      >
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          {/* Logo */}
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="flex items-center gap-2 text-2xl font-bold text-accent hover:text-text-primary transition-colors duration-300 relative z-50"
           >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </button>
+            <img src={Logo2} alt="Logo" className="w-8 h-8 object-contain " />
+            <span className="font-mono mt-1">Portfolio</span>
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            <ul className="flex space-x-8">
+              {navItems.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className={`flex items-center gap-2 text-sm font-mono transition-all duration-300 ${
+                      isActive(item.path)
+                        ? "text-accent"
+                        : "text-text-secondary hover:text-accent"
+                    }`}
+                  >
+                    <span className="text-lg">{item.icon}</span>
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-secondary text-accent hover:bg-accent hover:text-primary transition-all duration-300"
+              aria-label="Toggle Theme"
+            >
+              {isDarkMode ? <FaSun /> : <FaMoon />}
+            </button>
+          </div>
+
+          {/* Mobile Controls */}
+          <div className="md:hidden flex items-center gap-4 relative z-50">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-secondary text-accent hover:bg-accent hover:text-primary transition-all duration-300"
+              aria-label="Toggle Theme"
+            >
+              {isDarkMode ? <FaSun /> : <FaMoon />}
+            </button>
+            <button
+              className="text-accent text-2xl focus:outline-none"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              {isMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
+      </nav>
 
-        {/* Mobile Controls */}
-        <div className="md:hidden flex items-center gap-4 relative z-50">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-full bg-secondary text-accent hover:bg-accent hover:text-primary transition-all duration-300"
-            aria-label="Toggle Theme"
-          >
-            {isDarkMode ? <FaSun /> : <FaMoon />}
-          </button>
-          <button
-            className="text-accent text-2xl focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Rendered outside nav for proper positioning */}
       <AnimatePresence>
         {isMenuOpen && (
           <>
@@ -144,7 +146,7 @@ const NavBar = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] md:hidden"
               onClick={closeMenu}
             />
 
@@ -154,7 +156,7 @@ const NavBar = () => {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[280px] bg-secondary/95 backdrop-blur-lg shadow-2xl z-50 md:hidden overflow-y-auto"
+              className="fixed top-0 right-0 bottom-0 w-[280px] bg-secondary/95 backdrop-blur-lg shadow-2xl z-[70] md:hidden overflow-y-auto"
             >
               <div className="flex flex-col h-full pt-24 pb-8 px-6">
                 {/* Navigation */}
@@ -200,7 +202,7 @@ const NavBar = () => {
           </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
