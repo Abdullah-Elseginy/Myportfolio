@@ -5,7 +5,7 @@ export { default as About } from "./svgs/about-information-info-help-svgrepo-com
 export { default as Projects } from "./svgs/projects-svgrepo-com.svg";
 export { default as Contact } from "./svgs/contact-email-mail-svgrepo-com.svg";
 export { default as MyImage } from "./images/My .png";
-export { default as MyCV } from "./pdf/Abdullah-Elseginy-React-Native-CV.pdf";
+export { default as MyCV } from "./pdf/Abdullah-Elseginy-CV.pdf";
 export { default as AMSAPP } from "./images/AMS-Mocup.png";
 export { default as ShoglMocup } from "./images/Shoghl-MockUp.png";
 export { default as BloomifyMocup } from "./images/bloomify-Mockup.png";
